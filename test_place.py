@@ -17,9 +17,14 @@ def run_tests():
     # Test initial-value place
     print("Test initial-value place:")
     new_place = Place("Malagar", "Spain", 1, False)
-    # TODO: Write tests to show this initialisation works
-
+    assert new_place.name == "Malagar"
+    assert new_place.country == "Spain"
+    assert new_place.priority == 1
+    assert new_place.is_visited is False
+    print(new_place)
     # TODO: Add more tests, as appropriate, for each method
+
+
 
 
 run_tests()
