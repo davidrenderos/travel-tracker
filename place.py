@@ -2,7 +2,7 @@
 
 
 # Create your Place class in this file
-
+IMPORTANCE = 2
 
 class Place:
     """What this class does: """
@@ -17,11 +17,10 @@ class Place:
         return "{}, {}, {}, {}".format(self.name, self.country, self.priority, self.is_visited)
 
     def visited(self):
-        pass
-        # return self.is_visited == True
+        return self.is_visited is True
 
     def unvisited(self):
-        pass
+        return self.is_visited is False
 
     def important_place(self):
-        pass
+        return self.priority >= IMPORTANCE
