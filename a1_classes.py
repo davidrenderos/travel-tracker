@@ -34,7 +34,7 @@ def main():
     save_places(list_of_places)
 
 
-def load_places(file_name):
+def load_places():
     """Start empty list for place storage; Load needed csv file"""
     list_of_places = []
     in_file = open(PLACES_FILE, 'r')

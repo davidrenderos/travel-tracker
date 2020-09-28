@@ -6,6 +6,7 @@
 
 class PlaceCollection:
     """What this class does: """
+
     def __init__(self):
         self.places = []
 
@@ -22,7 +23,7 @@ class PlaceCollection:
         self.places.append(place)
 
     def get_unvisited(self):
-        pass
+        return ["Unvisited" for place in self.places if not place.is_visited]
 
     def sort_places(self):
         pass

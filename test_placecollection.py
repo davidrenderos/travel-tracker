@@ -12,6 +12,18 @@ def run_tests():
     print(place_collection)
     assert not place_collection.places  # an empty list is considered False
 
+    # Test get_unvisited method
+    print("Test get_unvisited method:")
+    p = PlaceCollection()
+    place1 = Place("Sydney", "Australia", 3, True)
+    place2 = Place("New York", "USA", 4, False)
+    place3 = Place("Tokyo", "Japan", 1, True)
+    p.add_place(place1)
+    p.add_place(place2)
+    p.add_place(place3)
+    print(p)
+    print(p.get_unvisited())
+
     # Test loading places
     print("Test loading places:")
     place_collection.load_places('places.csv')
