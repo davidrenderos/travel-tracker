@@ -1,11 +1,9 @@
 """name date etc..."""
 
 
-# Create your Place class in this file
-IMPORTANCE = 2
-
 class Place:
     """What this class does: """
+    IMPORTANCE = 2
 
     def __init__(self, name="", country="", priority=0, is_visited=False):
         self.name = name
@@ -16,11 +14,11 @@ class Place:
     def __str__(self):
         return "{}, {}, {}, {}".format(self.name, self.country, self.priority, self.is_visited)
 
-    def visited(self):
+    def get_visited(self):
         return self.is_visited is True
 
-    def unvisited(self):
+    def get_unvisited(self):
         return self.is_visited is False
 
-    def important_place(self):
-        return self.priority >= IMPORTANCE
+    def is_important_place(self):
+        return self.priority >= Place.IMPORTANCE

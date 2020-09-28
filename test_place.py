@@ -27,32 +27,27 @@ def run_tests():
     print("Test if visited:")
     visited_place = Place("Sydney", "Australia", 3, True)
     print(visited_place)
-    print(Place.visited(visited_place))
+    print(Place.get_visited(visited_place))
     assert visited_place.is_visited is True
 
     # Test if unvisited
     print("Test if unvisited:")
     unvisited_place = Place("Tokyo", "Japan", 1, False)
     print(unvisited_place)
-    print(Place.unvisited(unvisited_place))
+    print(Place.get_unvisited(unvisited_place))
     assert unvisited_place.is_visited is False
 
     # Test important  place
     print("Test important place:")
     important_place = Place("New York", "USA", 4, False)
     print(important_place)
-    print(Place.important_place(important_place))
+    print(Place.is_important_place(important_place))
 
     # Test unimportant  place
     print("Test unimportant place:")
     unimportant_place = Place("Madrid", "Spain", 1, False)
     print(unimportant_place)
-    print(Place.important_place(unimportant_place))
-
-
-
-
-    # print("Importance:", Place.important_place(new_place))
+    print(Place.is_important_place(unimportant_place))
 
 
 run_tests()
