@@ -1,7 +1,6 @@
 """name date etc..."""
-
-
-# Create your PlaceCollection class in this file
+from place import Place
+from a1_classes import load_places
 
 
 class PlaceCollection:
@@ -13,8 +12,15 @@ class PlaceCollection:
     def __str__(self):
         return str([str(place) for place in self.places])
 
-    def load_places(self):
-        pass
+    def load_places(self, places_file):
+        places = load_places()
+        for place in places:
+            name = place[0]
+            country = place[1]
+            priority = int(place[2])
+            is_visited = place[3]
+            new_place = Place(name, country, priority, is_visited)
+            self.places.append(new_place)
 
     def save_places(self):
         pass
