@@ -23,7 +23,11 @@ class PlaceCollection:
         self.places.append(place)
 
     def get_unvisited(self):
-        return ["Unvisited" for place in self.places if not place.is_visited]
+        unvisited_places = 0
+        for place in self.places:
+            if not place.is_visited:
+                unvisited_places += 1
+        return unvisited_places
 
     def sort_places(self):
         pass
