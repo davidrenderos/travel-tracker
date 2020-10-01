@@ -1,6 +1,7 @@
 """name date etc..."""
 from place import Place
 from a1_classes import load_places
+from operator import attrgetter
 
 
 class PlaceCollection:
@@ -29,11 +30,7 @@ class PlaceCollection:
         self.places.append(place)
 
     def get_unvisited(self):
-        unvisited_places = 0
-        for place in self.places:
-            if not place.is_visited:
-                unvisited_places += 1
-        return unvisited_places
+        return len([place for place in self.places if not place.is_visited])
 
     def sort_places(self):
         pass
