@@ -23,18 +23,18 @@ def run_tests():
     assert new_place.priority == 1
     assert new_place.is_visited is False
 
-    # Test if visited
-    print("Test if visited:")
+    # Mark if visited
+    print("Mark if visited:")
     visited_place = Place("Sydney", "Australia", 3, True)
     print(visited_place)
-    print(Place.get_visited(visited_place))
+    print(Place.mark_visited(visited_place))
     assert visited_place.is_visited is True
 
-    # Test if unvisited
-    print("Test if unvisited:")
+    # Mark if unvisited
+    print("Mark if unvisited:")
     unvisited_place = Place("Tokyo", "Japan", 1, False)
     print(unvisited_place)
-    print(Place.get_unvisited(unvisited_place))
+    print(Place.mark_unvisited(unvisited_place))
     assert unvisited_place.is_visited is False
 
     # Test important  place
