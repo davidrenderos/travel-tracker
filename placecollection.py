@@ -1,6 +1,5 @@
 """name date etc..."""
 from place import Place
-from a1_classes import load_places
 from operator import attrgetter
 
 
@@ -14,14 +13,12 @@ class PlaceCollection:
         return str([str(place) for place in self.places])
 
     def load_places(self, places_file):
-        places = load_places()
-        for place in places:
-            name = place[0]
-            country = place[1]
-            priority = int(place[2])
-            is_visited = place[3]
-            new_place = Place(name, country, priority, is_visited)
-            self.places.append(new_place)
+        in_file = open(places_file, 'r')
+        for line in in_file:
+            parts = line.strip().split(',')
+            place = Place(parts[0], parts[1], int(parts[2]), parts[3])
+            self.places.append(place)
+        in_file.close()
 
     def save_places(self):
         pass
