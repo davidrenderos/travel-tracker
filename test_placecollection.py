@@ -22,7 +22,7 @@ def run_tests():
     p.add_place(place2)
     p.add_place(place3)
     print(p)
-    print(p.get_unvisited())
+    print("{} total unvisited places".format(p.get_unvisited()))
 
     # Test loading places
     print("Test loading places:")
