@@ -54,7 +54,11 @@ def run_tests():
     print("Test sorting - visited:")
     place_collection.sort("is_visited")
     print(place_collection)
-    # TODO: Test saving places (check CSV file manually to see results)
+
+    # Test saving places (check CSV file manually to see results)
+    print("Test saving")
+    place_collection.save_places('places.csv')
+    assert place_collection.places
 
     # TODO: Add more tests, as appropriate, for each method
 
