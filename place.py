@@ -12,13 +12,15 @@ class Place:
         self.is_visited = is_visited
 
     def __str__(self):
-        return "{}, {}, {}, {}".format(self.name, self.country, self.priority, self.is_visited)
+        return "{self.name}, {self.country}, {self.priority}, {self.is_visited}".format(self=self)
 
-    def get_visited(self):
-        return self.is_visited is True
+    def mark_visited(self):
+        mark_asv = 'v' if self.is_visited else 'n'
+        return mark_asv
 
-    def get_unvisited(self):
-        return self.is_visited is False
+    def mark_unvisited(self):
+        mark_asn = 'v' if self.is_visited else 'n'
+        return mark_asn
 
     def is_important_place(self):
         return self.priority >= Place.IMPORTANCE
