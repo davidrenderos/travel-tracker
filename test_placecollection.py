@@ -37,22 +37,22 @@ def run_tests():
 
     # Test sorting places
     print("Test sorting - priority:")
-    place_collection.sort("priority")
+    place_collection.sort_places("priority")
     print(place_collection)
 
     # Test sorting places
     print("Test sorting - name:")
-    place_collection.sort("name")
+    place_collection.sort_places("name")
     print(place_collection)
 
     # Test sorting places
     print("Test sorting - country:")
-    place_collection.sort("country")
+    place_collection.sort_places("country")
     print(place_collection)
 
     # Test sorting places
     print("Test sorting - visited:")
-    place_collection.sort("is_visited")
+    place_collection.sort_places("is_visited")
     print(place_collection)
 
     # Test saving places (check CSV file manually to see results)
