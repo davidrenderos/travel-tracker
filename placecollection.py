@@ -32,7 +32,7 @@ class PlaceCollection:
     def get_unvisited(self):
         return len([place for place in self.places if not place.is_visited])
 
-    def sort(self, key):
+    def sort_places(self, key):
         sort_status = ""
         if key == "name":
             sort_status = sorted(self.places, key=attrgetter('name'))
