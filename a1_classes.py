@@ -91,7 +91,7 @@ def add_place(places):
         except ValueError:
             print("Invalid input; enter a valid number")
     print("{} in {} (priority {}) added to Travel Tracker".format(name, country, priority))
-    places.append([name, country, priority, 'n'])
+    places.append(Place)
 
 
 def mark_visited(places):
