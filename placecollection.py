@@ -9,6 +9,7 @@ STATUS_INDEX = 3
 VISITED = 'v'
 UNVISITED = 'n'
 
+
 class PlaceCollection:
     """What this class does: """
 

@@ -88,7 +88,7 @@ class TravelTrackerApp(App):
         if self.validate_input(new_name, new_country, new_priority):
             self.place_collection.add_place(Place(new_name, new_country, int(new_priority), False))
             button = Button(text='{} in {}, priority {} added'.format(new_name, new_country, new_priority), id=new_name,
-                            backgroun_color=UNVISITED)
+                            background_color=UNVISITED)
             button.bind(on_release=self.handle_press_place)
             button.place = self.place_collection.places[-1]
             self.clear_fields()
