@@ -1,4 +1,3 @@
-# Create your Kivy layout in the kv language here
 BoxLayout:
     orientation: 'horizontal'
     BoxLayout:
@@ -6,6 +5,9 @@ BoxLayout:
         Label:
             text: 'Sort by:'
         Spinner:
+            id: state_selection
+            text: app.current_selection
+            values: app.sort_by
         Label:
             text: 'Add new place...'
         Label:
