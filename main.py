@@ -11,6 +11,8 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty, ListProperty
 from kivy.uix.button import Button
 
+VISITED = (1, 0, 0, 1)
+UNVISITED = (1, 0, 1, 1)
 PLACES_FILE = 'places.csv'
 SORT_CATEGORIES = {'Name': 'name', 'Country': 'country', 'Priority': 'priority', 'Visited': 'is_visited'}
 
@@ -32,23 +34,46 @@ class TravelTrackerApp(App):
         self.root = Builder.load_file('app.kv')
         self.sort_by = sorted(SORT_CATEGORIES.keys())
         self.current_selection = self.sort_by[0]
-        self.places_to_visit = "Visit {}".format(self.place_collection.get_unvisited())
+        self.places_to_visit = "Places to visit: {}".format(self.place_collection.get_unvisited())
         self.create_buttons()
         return self.root
 
     def create_buttons(self):
         for place in self.place_collection.places:
-            button = Button(text=place.name, id=place.name)
+            display_color = self.set_button_color(place)
+            button = Button(text=self.display_visited(place), id=place.name, background_color=display_color)
             button.bind(on_release=self.handle_press_place)
             button.place = place
-            self.root.ids.box.add_widget(button)
+            self.root.ids.place_box.add_widget(button)
+
+    @staticmethod
+    def set_button_color(place):
+        display_color = UNVISITED
+        if place.is_visited:
+            display_color = VISITED
+        return display_color
 
     def handle_press_place(self, instance):
-        place = instance.place
-        visit_status_str = 'visited'
-        if not place.is_visited:
-            visit_status_str = 'unvisited'
-        self.place_status = "{} {}".format(visit_status_str, place.name)
+        if instance.place.is_visited:
+            instance.place.mark_unvisited()
+        else:
+            instance.place.mark_visited()
+        instance.background_color = self.set_button_color(instance.place)
+        place_instance = 'need to visit'
+        if instance.place.is_visited:
+            place_instance = 'visited'
+        self.place_status = "You {} {}.".format(place_instance, instance.place.name)
+        instance.text = self.display_visited(instance.place)
+        self.places_to_visit = "Places to visit: {}".format(self.place_collection.get_unvisited())
+
+    @staticmethod
+    def display_visited(instance):
+        is_visited = '(visited)'
+        if not instance.is_visited:
+            is_visited = ''
+        button_display_text = instance.text = "{} in {}, priority {} {}".format(instance.name, instance.country,
+                                                                                instance.priority, is_visited)
+        return button_display_text
 
     def new_spinner_selection(self, new_sort_by):
         self.current_selection = new_sort_by
