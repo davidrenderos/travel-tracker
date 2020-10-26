@@ -77,7 +77,13 @@ class TravelTrackerApp(App):
 
     def new_spinner_selection(self, new_sort_by):
         self.current_selection = new_sort_by
-        print("Now:", new_sort_by)
+        self.update_place_buttons()
+
+    def update_place_buttons(self):
+        self.place_collection.sort_places(SORT_CATEGORIES[self.current_selection])
+        self.root.ids.place_box.clear_widgets()
+        self.create_buttons()
+
 
 if __name__ == '__main__':
     TravelTrackerApp().run()
