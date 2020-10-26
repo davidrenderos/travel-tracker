@@ -10,6 +10,7 @@ from placecollection import PlaceCollection
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ListProperty
 from kivy.uix.button import Button
+from place import Place
 
 VISITED = (1, 0, 0, 1)
 UNVISITED = (1, 0, 1, 1)
@@ -35,7 +36,6 @@ class TravelTrackerApp(App):
         self.sort_by = sorted(SORT_CATEGORIES.keys())
         self.current_selection = self.sort_by[0]
         self.places_to_visit = "Places to visit: {}".format(self.place_collection.get_unvisited())
-        self.create_buttons()
         return self.root
 
     def create_buttons(self):
@@ -83,6 +83,26 @@ class TravelTrackerApp(App):
         self.place_collection.sort_places(SORT_CATEGORIES[self.current_selection])
         self.root.ids.place_box.clear_widgets()
         self.create_buttons()
+
+    def handle_press_add(self, new_name, new_country, new_priority):
+        # if self.validate_input(new_name, new_country, new_priority):
+            self.place_collection.add_place(Place(new_name, new_country, int(new_priority), False))
+            button = Button(text='{} in {}, priority {} added'.format(new_name, new_country, new_priority), id=new_name,
+                            backgroun_color=UNVISITED)
+            button.bind(on_release=self.handle_press_place)
+            button.place = self.place_collection.places[-1]
+            self.clear_fields()
+            self.update_place_buttons()
+
+    def clear_fields(self):
+        self.root.ids.new_name.text = ''
+        self.root.ids.new_country.text = ''
+        self.root.ids.new_priority.text = ''
+        self.place_status = ''
+
+    def on_stop(self):
+        self.place_collection.boolean_to_string()
+        self.place_collection.save_places(PLACES_FILE)
 
 
 if __name__ == '__main__':

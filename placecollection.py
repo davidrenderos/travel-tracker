@@ -2,6 +2,12 @@
 from place import Place
 from operator import attrgetter
 
+NAME_INDEX = 0
+COUNTRY_INDEX = 1
+PRIORITY_INDEX = 2
+STATUS_INDEX = 3
+VISITED = 'v'
+UNVISITED = 'n'
 
 class PlaceCollection:
     """What this class does: """
@@ -13,15 +19,16 @@ class PlaceCollection:
         return str([str(place) for place in self.places])
 
     def load_places(self, places_file):
-        in_file = open(places_file, 'r')
+        in_file = open('{}'.format(places_file), 'r')
         for line in in_file:
             parts = line.strip().split(',')
-            place = Place(parts[0], parts[1], int(parts[2]), parts[3])
+            place = Place(parts[NAME_INDEX], parts[COUNTRY_INDEX], int(parts[PRIORITY_INDEX]), True if parts
+                                                                        [STATUS_INDEX] == VISITED else False)
             self.places.append(place)
         in_file.close()
 
     def save_places(self, place_file):
-        out_file = open(place_file, 'w')
+        out_file = open('{}'.format(place_file), 'w')
         for place in self.places:
             out_file.write("{}\n".format(place))
         out_file.close()
@@ -38,6 +45,6 @@ class PlaceCollection:
     def boolean_to_string(self):
         for place in self.places:
             if place.is_visited:
-                place.is_visited = 'V'
+                place.is_visited = VISITED
             else:
-                place.is_visited = 'n'
+                place.is_visited = UNVISITED
