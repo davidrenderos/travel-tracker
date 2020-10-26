@@ -10,6 +10,7 @@ from placecollection import PlaceCollection
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ListProperty
 from kivy.uix.button import Button
+
 PLACES_FILE = 'places.csv'
 SORT_CATEGORIES = ['name', 'country', 'priority', 'is visited']
 
@@ -39,11 +40,15 @@ class TravelTrackerApp(App):
         for place in self.place_collection.places:
             button = Button(text=place.name, id=place.name)
             button.bind(on_release=self.handle_press_place)
+            button.place = place
             self.root.ids.box.add_widget(button)
 
     def handle_press_place(self, instance):
-        name = instance.id
-        self.display_text = "{}".format(name)
+        place = instance.place
+        visit_status_str = 'visited'
+        if not place.is_visited:
+            visit_status_str = 'unvisited'
+        self.place_status = "{} {}".format(visit_status_str, place.name)
 
 
 if __name__ == '__main__':
