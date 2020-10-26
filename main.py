@@ -12,7 +12,7 @@ from kivy.properties import StringProperty, ListProperty
 from kivy.uix.button import Button
 
 PLACES_FILE = 'places.csv'
-SORT_CATEGORIES = ['name', 'country', 'priority', 'is visited']
+SORT_CATEGORIES = {'Name': 'name', 'Country': 'country', 'Priority': 'priority', 'Visited': 'is_visited'}
 
 
 class TravelTrackerApp(App):
@@ -30,7 +30,7 @@ class TravelTrackerApp(App):
     def build(self):
         self.title = "Places To Visit 2.0"
         self.root = Builder.load_file('app.kv')
-        self.sort_by = sorted(SORT_CATEGORIES)
+        self.sort_by = sorted(SORT_CATEGORIES.keys())
         self.current_selection = self.sort_by[0]
         self.places_to_visit = "Visit {}".format(self.place_collection.get_unvisited())
         self.create_buttons()
@@ -50,6 +50,9 @@ class TravelTrackerApp(App):
             visit_status_str = 'unvisited'
         self.place_status = "{} {}".format(visit_status_str, place.name)
 
+    def new_spinner_selection(self, new_sort_by):
+        self.current_selection = new_sort_by
+        print("Now:", new_sort_by)
 
 if __name__ == '__main__':
     TravelTrackerApp().run()

@@ -5,9 +5,10 @@ BoxLayout:
         Label:
             text: 'Sort by:'
         Spinner:
-            id: state_selection
+            id: sort_selection
             text: app.current_selection
             values: app.sort_by
+            on_text: app.new_spinner_selection(self.text)
         Label:
             text: 'Add new place...'
         Label:
