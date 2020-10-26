@@ -85,7 +85,7 @@ class TravelTrackerApp(App):
         self.create_buttons()
 
     def handle_press_add(self, new_name, new_country, new_priority):
-        # if self.validate_input(new_name, new_country, new_priority):
+        if self.validate_input(new_name, new_country, new_priority):
             self.place_collection.add_place(Place(new_name, new_country, int(new_priority), False))
             button = Button(text='{} in {}, priority {} added'.format(new_name, new_country, new_priority), id=new_name,
                             backgroun_color=UNVISITED)
@@ -93,6 +93,22 @@ class TravelTrackerApp(App):
             button.place = self.place_collection.places[-1]
             self.clear_fields()
             self.update_place_buttons()
+
+    def validate_input(self, name, country, priority):
+        input_fields = name, country, priority
+        for field in input_fields:
+            if field == '':
+                self.place_status = "All fields must be completed"
+                return False
+        try:
+            priority = int(priority)
+        except ValueError:
+            self.place_status = "Please enter a valid number"
+            return False
+        if not priority > 0:
+            self.place_status = "Priority must be >0"
+            return False
+        return True
 
     def clear_fields(self):
         self.root.ids.new_name.text = ''
