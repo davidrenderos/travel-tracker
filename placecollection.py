@@ -1,4 +1,7 @@
-"""name date etc..."""
+"""
+David Renderos
+Assignment 2 - Travel Tracker
+"""
 from place import Place
 from operator import attrgetter
 
@@ -11,7 +14,7 @@ UNVISITED = 'n'
 
 
 class PlaceCollection:
-    """What this class does: """
+    """Track the usage of Movie objects. """
 
     def __init__(self):
         self.places = []

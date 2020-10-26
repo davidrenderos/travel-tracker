@@ -1,8 +1,8 @@
 """
-Name:
-Date:
-Brief Project Description:
-GitHub URL:
+Name: David Renderos
+Date: 26/10/2020
+Brief Project Description: This project highlights the use of inheritance and the use of classes.
+GitHub URL: https://github.com/cp1404-students/travel-tracker-assignment-2-davidrenderos
 """
 
 from kivy.app import App
@@ -19,7 +19,7 @@ SORT_CATEGORIES = {'Name': 'name', 'Country': 'country', 'Priority': 'priority',
 
 
 class TravelTrackerApp(App):
-    """..."""
+    """App constructor class, used for GUI"""
     current_selection = StringProperty()
     sort_by = ListProperty()
     places_to_visit = StringProperty()
@@ -39,6 +39,7 @@ class TravelTrackerApp(App):
         return self.root
 
     def create_buttons(self):
+        """Creates buttons from MovieCollection for the GUI."""
         for place in self.place_collection.places:
             display_color = self.set_button_color(place)
             button = Button(text=self.display_visited(place), id=place.name, background_color=display_color)

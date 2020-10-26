@@ -1,8 +1,11 @@
-"""name date etc..."""
+"""
+David Renderos
+Assignment 2 - Travel Tracker
+"""
 
 
 class Place:
-    """What this class does: """
+    """Holds characteristics of a Place"""
     IMPORTANCE = 2
 
     def __init__(self, name="", country="", priority=0, is_visited=False):
